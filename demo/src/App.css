@@ -25,7 +25,7 @@
     font-size: large;
 }
 
-.button-delete, .button-default, .button-add, .button-edit, .button-secondary, .button-save {
+.button-delete, .button-default, .button-add, .button-edit, .button-save {
     border: none;
     color: #FFF;
     font: 13px/1.4 Roboto, sans-serif;
@@ -110,7 +110,7 @@
     margin: 0px;
 }
 
-#container .board .commentContainer {
+#container .board .taskContainer {
     background: #eee;
     border: 1px solid #ccc;
     display: inline-block;
@@ -118,22 +118,22 @@
     padding: 8px
 }
 
-#container .board .commentContainer .comment {
+#container .board .taskContainer .comment {
     font-size: 1.1em;
     font-weight: 500;
     margin-bottom: 10px
 }
 
-#container .board .commentContainer button {
+#container .board .taskContainer button {
     margin-right: 6px
 }
 
-#container .board .commentContainer textarea {
+#container .board .taskContainer textarea {
     display: block;
     margin-bottom: 10px
 }
 
-.commentText {
+.taskText {
     padding-bottom: 4px;
 }
 
@@ -144,4 +144,20 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+.taskDetailContainer {
+    background-color: #bfd5ff;
+    padding: 4px;
+    margin: 0px;
+    background: #eee;
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin: 8px;
+    padding: 8px
+}
+
+.taskContainerLabel{
+    text-align: left;
+    padding-bottom: 3px;
 }

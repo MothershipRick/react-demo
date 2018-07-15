@@ -18,7 +18,7 @@ class Board extends Component {
 
     addTask = () => {
         const arr = [...this.state.comments];
-        arr.push('');
+        arr.push('Click Edit to update');
         this.setState({comments: arr});
     };
 
@@ -42,9 +42,7 @@ class Board extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Hello, Rick. Let's get to work.</h1>
-                <h3 id="date"></h3>
+            <div id="container">
                 <div className="board">
                     <button onClick={this.addTask} className="button-add create">Add New Task</button>
                     <br/>

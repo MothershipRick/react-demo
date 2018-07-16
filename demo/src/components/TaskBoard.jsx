@@ -12,10 +12,7 @@ class TaskBoard extends Component {
     };
 
     sortTask = () => {
-        const arr = [...this.state.comments];
-        arr.sort((a, b) => a.dueDate - b.dueDate);
-        arr.map((task, i) => (<div key={i}> {task.id}
-            {task.dueDate} {task.taskName}</div>))
+        // do nothing
     };
 
     eachComment = (task, i) => {
@@ -33,6 +30,7 @@ class TaskBoard extends Component {
                     <button onClick={this.sortTask} className="button-default">Sort</button>
                     <br/>
                     {this.props.tasks.map(this.eachComment)}
+                    <br />
                     <TaskDetail/>
                 </div>
             </div>

@@ -50,20 +50,21 @@ class Task extends Component {
         console.log(this.state);
         return (
             <div className="taskContainer">
-                <label className="taskContainerLabel"> Name:</label>
-                <textarea name="taskName" value={this.state.taskName} onChange={this.onChange}/>
-                <label className="taskContainerLabel"> Description:</label>
-                <textarea name="taskDescription" value={this.state.taskDescription} onChange={this.onChange}/>
-                <label className="taskContainerLabel"> Due Date:</label>
-                <input name="dueDate" type="date" onChange={this.onChange}/>
-                <label className="taskContainerLabel"> Priority:</label>
-                <div className="radio">
-                    <input name="priority" type="radio" name="priority" value="1" onChange={this.onChange}/> High
-                    <input name="priority" type="radio" name="priority" value="2" onChange={this.onChange}/> Norm
-                    <input name="priority" type="radio" name="priority" value="3" onChange={this.onChange}/> Low
-                </div>
-                <button onClick={this.save} className="button-save">Save</button>
-
+                <form>
+                    <label className="taskContainerLabel"> Name:</label>
+                    <textarea name="taskName" value={this.state.taskName} onChange={this.onChange}/>
+                    <label className="taskContainerLabel"> Description:</label>
+                    <textarea name="taskDescription" value={this.state.taskDescription} onChange={this.onChange}/>
+                    <label className="taskContainerLabel"> Due Date:</label>
+                    <input name="dueDate" type="date" onChange={this.onChange}/>
+                    <label className="taskContainerLabel"> Priority:</label>
+                    <div className="radio">
+                        <input name="priority" type="radio" name="priority" value="1" onChange={this.onChange}/> High
+                        <input name="priority" type="radio" name="priority" value="2" onChange={this.onChange}/> Norm
+                        <input name="priority" type="radio" name="priority" value="3" onChange={this.onChange}/> Low
+                    </div>
+                    <button onClick={this.save} className="button-save">Save</button>
+                </form>
             </div>
         );
     }

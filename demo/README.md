@@ -4,3 +4,4 @@ It is a design by Rick Perez.
 To get started:
 cd demo
 npm install
+npm start

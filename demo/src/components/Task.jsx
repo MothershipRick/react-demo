@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
+import {deleteTask, selectTask, updateTask} from "../actions";
+import {connect} from "react-redux";
 
 class Task extends Component {
     constructor(props) {
         super(props);
-        this.state = this.getInitialState(props.comment);
+        this.state = this.getInitialState(props);
     }
 
-    getInitialState(taskText) {
-        return {editing: false, taskText}
+    getInitialState(props) {
+        return {editing: false, ...props}
     }
 
     edit = () => {
@@ -15,26 +17,29 @@ class Task extends Component {
     };
 
     remove = () => {
-        this.props.deleteTask(this.props.index);
+        this.props.deleteTask(this.props.id);
     };
 
     save = () => {
-        this.props.updateTaskText(this.state.taskText, this.props.index);
+        this.props.updateTask(this.props.id, {...this.state});
         this.setState({editing: false});
     };
 
-    onChange = (e) => {
-        this.setState({taskText: e.target.value});
+    select = () => {
+        this.props.selectTask(this.props.id);
     };
 
-    onDescriptionChange = (e) => {
-        this.setState({taskText: e.target.value});
+    onChange = (e) => {
+        const {name, value} = e.target;
+        const newState = {};
+        newState[name] = value;
+        this.setState(newState);
     };
 
     renderNormal() {
         return (
             <div className="taskContainer">
-                <div className="taskText">{this.state.taskText}</div>
+                <div className="taskText" onClick={this.select}>{this.state.taskName}</div>
                 <button onClick={this.edit} className="button-edit">Edit</button>
                 <button onClick={this.remove} className="button-delete">Remove</button>
             </div>
@@ -42,23 +47,23 @@ class Task extends Component {
     }
 
     renderForm() {
+        console.log(this.state);
         return (
             <div className="taskContainer">
-                <form>
-                    <label className="taskContainerLabel"> Name:</label>
-                    <textarea value={this.state.taskText} onChange={this.onChange} />
-                    <label className="taskContainerLabel"> Description:</label>
-                    <textarea value={this.state.taskDescription} onChange={this.onDescriptionChange} />
-                    <label className="taskContainerLabel"> Due Date:</label>
-                    <input type="date"/>
-                    <label className="taskContainerLabel"> Priority:</label>
-                    <div className="radio">
-                        <input type="radio" name="priority" value="1"/> High
-                        <input type="radio" name="priority" value="2"/> Norm
-                        <input type="radio" name="priority" value="3"/> Low
-                    </div>
-                    <button onClick={this.save} className="button-save">Save</button>
-                </form>
+                <label className="taskContainerLabel"> Name:</label>
+                <textarea name="taskName" value={this.state.taskName} onChange={this.onChange}/>
+                <label className="taskContainerLabel"> Description:</label>
+                <textarea name="taskDescription" value={this.state.taskDescription} onChange={this.onChange}/>
+                <label className="taskContainerLabel"> Due Date:</label>
+                <input name="dueDate" type="date" onChange={this.onChange}/>
+                <label className="taskContainerLabel"> Priority:</label>
+                <div className="radio">
+                    <input name="priority" type="radio" name="priority" value="1" onChange={this.onChange}/> High
+                    <input name="priority" type="radio" name="priority" value="2" onChange={this.onChange}/> Norm
+                    <input name="priority" type="radio" name="priority" value="3" onChange={this.onChange}/> Low
+                </div>
+                <button onClick={this.save} className="button-save">Save</button>
+
             </div>
         );
     }
@@ -74,4 +79,9 @@ class Task extends Component {
 
 }
 
-export default Task
+const mapDispatchToProps = {
+    selectTask,
+    updateTask,
+    deleteTask,
+};
+export default connect(null, mapDispatchToProps)(Task)

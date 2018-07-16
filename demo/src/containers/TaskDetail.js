@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {selectedTaskSelector} from "../selectors";
 
 class TaskDetail extends Component {
 
@@ -19,7 +20,7 @@ class TaskDetail extends Component {
 
 function mapStateToProps(state) {
     return {
-        task: state.activeTask
+        task: selectedTaskSelector(state),
     };
 }
 
